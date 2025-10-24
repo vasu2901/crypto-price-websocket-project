@@ -1,4 +1,3 @@
-# main.py
 import asyncio
 import json
 import logging
@@ -6,7 +5,6 @@ import os
 from datetime import datetime
 from typing import Dict, Set, Any
 
-import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,7 +12,7 @@ import websockets
 from websockets.exceptions import ConnectionClosedError, ConnectionClosedOK
 
 
-BINANCE_STREAM_BASE = "wss://stream.binance.com:9443/stream?streams="
+BINANCE_STREAM_BASE = "wss://stream.binance.us:9443/stream?streams="
 PAIRS = os.getenv("PAIRS", "btcusdt,ethusdt").split(",")
 STREAMS = "/".join(f"{pair.lower()}@ticker" for pair in PAIRS)
 
@@ -195,7 +193,3 @@ async def on_shutdown():
                 pass
         connected_clients.clear()
     logger.info("Shutdown complete.")
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="info")
