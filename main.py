@@ -12,7 +12,7 @@ import websockets
 from websockets.exceptions import ConnectionClosedError, ConnectionClosedOK
 
 
-BINANCE_STREAM_BASE = "wss://stream.binance.us:9443/stream?streams="
+BINANCE_STREAM_BASE = "wss://stream.binance.com:9443/stream?streams="
 PAIRS = os.getenv("PAIRS", "btcusdt,ethusdt").split(",")
 STREAMS = "/".join(f"{pair.lower()}@ticker" for pair in PAIRS)
 
